@@ -37,18 +37,64 @@ class User(UserMixin):
 # create some users with ids 1 to 20       
 user = User(0)
 
+# somewhere to logout
+@app.route("/logout")
+@login_required
+def logout():
+    logout_user()
+    return redirect('login')   
+    
+@app.route('/login',methods=["GET", "POST"])
+@limiter.limit("10 per minute")
+def login():
+    '''this function return login page'''
+    error = None
+    if current_user.is_authenticated:
+        return redirect("/")
+    if request.method == 'POST':
+        username = request.form["username"]
+        password = request.form["Password"]
+        if check(username,password):
+            login_user(user)
+            return redirect(url_for('index'))
+        else:
+            error = '!!!invalid user!!!' 
+               
+    return render_template('login.html', error=error)
+
+# callback to reload the user object        
+@login_manager.user_loader
+def load_user(userid):
+    return User(userid)    
+
+@app.route("/ok")
+def sys_check():
+    '''this function tell that falsk server is ok and running!!'''
+    ret = {'status':'ok','message':'[+] flask server is running'}
+    return jsonify(ret) , 200
 
 @app.route('/')
-def hello():
-    return "Hello World!"
+@login_required
+def index(): 
 
+    return render_template('index.html')
 
-@app.route('/<name>')
-def hello_name(name):
-    return "Hello {}!".format(name)
+@app.route('/photos')
+@login_required
+def photos_page(): 
 
+    return render_template('photos.html')
 
-city_name = input()
+@app.route('/contact',methods=["GET", "POST"])
+@login_required
+def add():
+    if request.method == 'POST':
+        return redirect('/')
+
+    else:
+        return render_template('contact.html')
+
+#city_name = input()
 API_KEY = config.API_KEY
 
 def check(username,password):

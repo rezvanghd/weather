@@ -12,7 +12,7 @@
 		<link href="fonts/font-awesome.min.css" rel="stylesheet" type="text/css">
 
 		<!-- Loading main css file -->
-		<link rel="stylesheet" href="style.css">
+		<link rel="stylesheet" href="static/style.css">
 		
 		<!--[if lt IE 9]>
 		<script src="js/ie-support/html5.js"></script>
@@ -27,8 +27,8 @@
 		<div class="site-content">
 			<div class="site-header">
 				<div class="container">
-					<a href="index.html" class="branding">
-						<img src="images/logo.png" alt="" class="logo">
+					<a href="/" class="branding">
+						<img src="static/images/logo.png" alt="" class="logo">
 						<div class="logo-type">
 							<h1 class="site-title">Weather Station</h1>
 							<small class="site-description">Rezvan.ghd</small>
@@ -39,9 +39,11 @@
 					<div class="main-navigation">
 						<button type="button" class="menu-toggle"><i class="fa fa-bars"></i></button>
 						<ul class="menu">
-							<li class="menu-item"><a href="index.html">Home</a></li>
-							<li class="menu-item current-menu-item"><a href="photos.html">Photos</a></li>
-							<li class="menu-item"><a href="contact.html">Contact</a></li>
+							<li class="menu-item"><a href="/">Home</a></li>
+							<li class="menu-item current-menu-item"><a href="photos">Photos</a></li>
+							<li class="menu-item"><a href="contact">Contact</a></li>
+							<li class="menu-item current-menu-item"><a href="/logout">Logout</a></li>
+						</ul> <!-- .menu -->
 						</ul> <!-- .menu -->
 					</div> <!-- .main-navigation -->
 
@@ -53,7 +55,7 @@
 			<main class="main-content">
 				<div class="container">
 					<div class="breadcrumb">
-						<a href="index.html">Home</a>
+						<a href="/">Home</a>
 						<span>Photos</span>
 					</div>
 				</div>
@@ -63,35 +65,35 @@
 						<div class="row">
 							<div class="col-md-6">
 								<div class="photo">
-									<div class="photo-preview photo-detail" data-bg-image="images/photo-1.jpg"></div>
+									<div class="photo-preview photo-detail" data-bg-image="static/images/photo-1.jpg"></div>
 									<div class="photo-details">
 										<h3 class="photo-title"><a href="#">..</a></h3>
 										<p>...</p>
 									</div>
 								</div>
 								<div class="photo">
-									<div class="photo-preview photo-detail" data-bg-image="images/photo-2.jpg"></div>
+									<div class="photo-preview photo-detail" data-bg-image="static/images/photo-2.jpg"></div>
 									<div class="photo-details">
 										<h3 class="photo-title"><a href="#">..</a></h3>
 										<p>...</p>
 									</div>
 								</div>
 								<div class="photo">
-									<div class="photo-preview photo-detail" data-bg-image="images/photo-2.jpg"></div>
+									<div class="photo-preview photo-detail" data-bg-image="static/images/photo-2.jpg"></div>
 									<div class="photo-details">
 										<h3 class="photo-title"><a href="#">..</a></h3>
 										<p>...</p>
 									</div>
 								</div>
 								<div class="photo">
-									<div class="photo-preview photo-detail" data-bg-image="images/photo-4.jpg"></div>
+									<div class="photo-preview photo-detail" data-bg-image="static/images/photo-4.jpg"></div>
 									<div class="photo-details">
 										<h3 class="photo-title"><a href="#">..</a></h3>
 										<p>..</p>
 									</div>
 								</div>
 								<div class="photo">
-									<div class="photo-preview photo-detail" data-bg-image="images/photo-5.jpg"></div>
+									<div class="photo-preview photo-detail" data-bg-image="static/images/photo-5.jpg"></div>
 									<div class="photo-details">
 										<h3 class="photo-title"><a href="#">..</a></h3>
 										<p>...</p>
@@ -100,22 +102,14 @@
 							</div>
 							<div class="col-md-6">
 								<div class="photo">
-									<div class="photo-preview photo-detail" data-bg-image="images/photo-4.jpg"></div>
+									<div class="photo-preview photo-detail" data-bg-image="static/images/photo-4.jpg"></div>
 									<div class="photo-details">
 										<h3 class="photo-title"><a href="#">..</a></h3>
 										<p>...</p>
 									</div>
 								</div>
 								<div class="photo">
-									<div class="photo-preview photo-detail" data-bg-image="images/photo-7.jpg"></div>
-									<div class="photo-details">
-										<h3 class="photo-title"><a href="#">..</a></h3>
-										<p>...</p>
-										
-									</div>
-								</div>
-								<div class="photo">
-									<div class="photo-preview photo-detail" data-bg-image="images/photo-8.jpg"></div>
+									<div class="photo-preview photo-detail" data-bg-image="static/images/photo-7.jpg"></div>
 									<div class="photo-details">
 										<h3 class="photo-title"><a href="#">..</a></h3>
 										<p>...</p>
@@ -123,7 +117,7 @@
 									</div>
 								</div>
 								<div class="photo">
-									<div class="photo-preview photo-detail" data-bg-image="images/photo-9.jpg"></div>
+									<div class="photo-preview photo-detail" data-bg-image="static/images/photo-8.jpg"></div>
 									<div class="photo-details">
 										<h3 class="photo-title"><a href="#">..</a></h3>
 										<p>...</p>
@@ -131,7 +125,15 @@
 									</div>
 								</div>
 								<div class="photo">
-									<div class="photo-preview photo-detail" data-bg-image="images/photo-10.jpg"></div>
+									<div class="photo-preview photo-detail" data-bg-image="static/images/photo-9.jpg"></div>
+									<div class="photo-details">
+										<h3 class="photo-title"><a href="#">..</a></h3>
+										<p>...</p>
+										
+									</div>
+								</div>
+								<div class="photo">
+									<div class="photo-preview photo-detail" data-bg-image="static/images/photo-10.jpg"></div>
 									<div class="photo-details">
 										<h3 class="photo-title"><a href="#">..</a></h3>
 										<p>...</p>
@@ -164,9 +166,9 @@
 			</footer> <!-- .site-footer -->
 		</div>
 		
-		<script src="js/jquery-1.11.1.min.js"></script>
-		<script src="js/plugins.js"></script>
-		<script src="js/app.js"></script>
+		<script src="static/js/jquery-1.11.1.min.js"></script>
+		<script src="static/js/plugins.js"></script>
+		<script src="static/js/app.js"></script>
 		
 	</body>
 

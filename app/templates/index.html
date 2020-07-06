@@ -9,10 +9,10 @@
 
 		<!-- Loading third party fonts -->
 		<link href="http://fonts.googleapis.com/css?family=Roboto:300,400,700|" rel="stylesheet" type="text/css">
-		<link href="fonts/font-awesome.min.css" rel="stylesheet" type="text/css">
+		<link href="static/fonts/font-awesome.min.css" rel="stylesheet" type="text/css">
 
 		<!-- Loading main css file -->
-		<link rel="stylesheet" href="style.css">
+		<link rel="stylesheet" href="static/style.css">
 		
 		<!--[if lt IE 9]>
 		<script src="js/ie-support/html5.js"></script>
@@ -27,8 +27,8 @@
 		<div class="site-content">
 			<div class="site-header">
 				<div class="container">
-					<a href="index.html" class="branding">
-						<img src="images/logo.png" alt="" class="logo">
+					<a href="/" class="branding">
+						<img src="static/images/logo.png" alt="" class="logo">
 						<div class="logo-type">
 							<h1 class="site-title">Weather Station</h1>
 							<small class="site-description">Rezvan.ghd</small>
@@ -39,9 +39,10 @@
 					<div class="main-navigation">
 						<button type="button" class="menu-toggle"><i class="fa fa-bars"></i></button>
 						<ul class="menu">
-							<li class="menu-item current-menu-item"><a href="index.html">Home</a></li>
-							<li class="menu-item"><a href="photos.html">Photos</a></li>
-							<li class="menu-item"><a href="contact.html">Contact</a></li>
+							<li class="menu-item current-menu-item"><a href="/">Home</a></li>
+							<li class="menu-item"><a href="photos">Photos</a></li>
+							<li class="menu-item"><a href="contact">Contact</a></li>
+							<li class="menu-item current-menu-item"><a href="/logout">Logout</a></li>
 						</ul> <!-- .menu -->
 					</div> <!-- .main-navigation -->
 
@@ -50,7 +51,7 @@
 				</div>
 			</div> <!-- .site-header -->
 
-			<div class="hero" data-bg-image="images/banner.png">
+			<div class="hero" data-bg-image="static/images/banner.png">
 				<div class="container">
 					<form action="#" class="find-location">
 						<input type="text" placeholder="Find your location...">
@@ -72,12 +73,12 @@
 								<div class="degree">
 									<div class="num">23<sup>o</sup>C</div>
 									<div class="forecast-icon">
-										<img src="images/icons/icon-1.svg" alt="" width=90>
+										<img src="static/images/icons/icon-1.svg" alt="" width=90>
 									</div>	
 								</div>
-								<span><img src="images/icon-umberella.png" alt="">20%</span>
-								<span><img src="images/icon-wind.png" alt="">18km/h</span>
-								<span><img src="images/icon-compass.png" alt="">East</span>
+								<span><img src="static/images/icon-umberella.png" alt="">20%</span>
+								<span><img src="static/images/icon-wind.png" alt="">18km/h</span>
+								<span><img src="static/images/icon-compass.png" alt="">East</span>
 							</div>
 						</div>
 						<div class="forecast">
@@ -86,7 +87,7 @@
 							</div> <!-- .forecast-header -->
 							<div class="forecast-content">
 								<div class="forecast-icon">
-									<img src="images/icons/icon-3.svg" alt="" width=48>
+									<img src="static/images/icons/icon-3.svg" alt="" width=48>
 								</div>
 								<div class="degree">23<sup>o</sup>C</div>
 								<small>18<sup>o</sup></small>
@@ -98,7 +99,7 @@
 							</div> <!-- .forecast-header -->
 							<div class="forecast-content">
 								<div class="forecast-icon">
-									<img src="images/icons/icon-5.svg" alt="" width=48>
+									<img src="static/images/icons/icon-5.svg" alt="" width=48>
 								</div>
 								<div class="degree">23<sup>o</sup>C</div>
 								<small>18<sup>o</sup></small>
@@ -110,7 +111,7 @@
 							</div> <!-- .forecast-header -->
 							<div class="forecast-content">
 								<div class="forecast-icon">
-									<img src="images/icons/icon-7.svg" alt="" width=48>
+									<img src="static/images/icons/icon-7.svg" alt="" width=48>
 								</div>
 								<div class="degree">23<sup>o</sup>C</div>
 								<small>18<sup>o</sup></small>
@@ -122,7 +123,7 @@
 							</div> <!-- .forecast-header -->
 							<div class="forecast-content">
 								<div class="forecast-icon">
-									<img src="images/icons/icon-12.svg" alt="" width=48>
+									<img src="static/images/icons/icon-12.svg" alt="" width=48>
 								</div>
 								<div class="degree">23<sup>o</sup>C</div>
 								<small>18<sup>o</sup></small>
@@ -134,7 +135,7 @@
 							</div> <!-- .forecast-header -->
 							<div class="forecast-content">
 								<div class="forecast-icon">
-									<img src="images/icons/icon-13.svg" alt="" width=48>
+									<img src="static/images/icons/icon-13.svg" alt="" width=48>
 								</div>
 								<div class="degree">23<sup>o</sup>C</div>
 								<small>18<sup>o</sup></small>
@@ -146,7 +147,7 @@
 							</div> <!-- .forecast-header -->
 							<div class="forecast-content">
 								<div class="forecast-icon">
-									<img src="images/icons/icon-14.svg" alt="" width=48>
+									<img src="static/images/icons/icon-14.svg" alt="" width=48>
 								</div>
 								<div class="degree">23<sup>o</sup>C</div>
 								<small>18<sup>o</sup></small>
@@ -219,15 +220,15 @@
 							<div class="col-md-4">
 								<h2 class="section-title">Awesome Photos</h2>
 								<div class="photo-grid">
-									<a href="#"><img src="images/thumb-1.jpg" alt="#"></a>
-									<a href="#"><img src="images/thumb-2.jpg" alt="#"></a>
-									<a href="#"><img src="images/thumb-3.jpg" alt="#"></a>
-									<a href="#"><img src="images/thumb-4.jpg" alt="#"></a>
-									<a href="#"><img src="images/thumb-5.jpg" alt="#"></a>
-									<a href="#"><img src="images/thumb-6.jpg" alt="#"></a>
-									<a href="#"><img src="images/thumb-7.jpg" alt="#"></a>
-									<a href="#"><img src="images/thumb-8.jpg" alt="#"></a>
-									<a href="#"><img src="images/thumb-9.jpg" alt="#"></a>
+									<a href="#"><img src="static/images/thumb-1.jpg" alt="#"></a>
+									<a href="#"><img src="static/images/thumb-2.jpg" alt="#"></a>
+									<a href="#"><img src="static/images/thumb-3.jpg" alt="#"></a>
+									<a href="#"><img src="static/images/thumb-4.jpg" alt="#"></a>
+									<a href="#"><img src="static/images/thumb-5.jpg" alt="#"></a>
+									<a href="#"><img src="static/images/thumb-6.jpg" alt="#"></a>
+									<a href="#"><img src="static/images/thumb-7.jpg" alt="#"></a>
+									<a href="#"><img src="static/images/thumb-8.jpg" alt="#"></a>
+									<a href="#"><img src="static/images/thumb-9.jpg" alt="#"></a>
 								</div>
 							</div>
 						</div>
@@ -254,9 +255,9 @@
 			</footer> <!-- .site-footer -->
 		</div>
 		
-		<script src="js/jquery-1.11.1.min.js"></script>
-		<script src="js/plugins.js"></script>
-		<script src="js/app.js"></script>
+		<script src="static/js/jquery-1.11.1.min.js"></script>
+		<script src="static/js/plugins.js"></script>
+		<script src="static/js/app.js"></script>
 		
 	</body>
 

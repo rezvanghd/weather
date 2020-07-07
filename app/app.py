@@ -1,3 +1,6 @@
+#$user/bin/python3
+
+# include libraries
 import requests
 import config
 from flask import Flask , render_template,request , redirect,jsonify, flash, url_for, Response, session
@@ -5,7 +8,7 @@ from flask_login import LoginManager, UserMixin, login_required, login_user, log
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
 
-
+# start flask app
 app = Flask(__name__)
 
 # config
@@ -13,6 +16,7 @@ app.config.update(
     SECRET_KEY = config.secret_key
 )
 
+# configure flask limmiter
 limiter = Limiter(
     app,
     key_func=get_remote_address,
@@ -41,6 +45,7 @@ user = User(0)
 @app.route("/logout")
 @login_required
 def logout():
+    ''' this is function for logouting from server site '''
     logout_user()
     return redirect('login')   
     
@@ -87,7 +92,8 @@ def photos_page():
 
 @app.route('/contact',methods=["GET", "POST"])
 @login_required
-def add():
+def contact():
+    ''' this is function for routing to the contact  '''
     if request.method == 'POST':
         return redirect('/')
 
@@ -104,7 +110,7 @@ def check(username,password):
     return res 
 
 def readdata(city_name,API_KEY):
-
+    ''' this is function for collecting datas from api online '''
     base_url = f"http://api.openweathermap.org/data/2.5/weather?q={city_name}&appid={API_KEY}"
 
     result = requests.get(base_url)
@@ -151,5 +157,6 @@ def readdata(city_name,API_KEY):
 
 #readdata(city_name,API_KEY)
 
+# main first run part
 if __name__ == '__main__':
     app.run("0.0.0.0",5000,debug=True)

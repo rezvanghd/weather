@@ -78,9 +78,14 @@ def sys_check():
     ret = {'status':'ok','message':'[+] flask server is running'}
     return jsonify(ret) , 200
 
-@app.route('/')
+@app.route('/',methods=["GET", "POST"])
 @login_required
 def index(): 
+
+    if request.method == 'POST':
+        cityname = request.form["name"]
+        # TODO : make this variable jinja for .html template
+        print(cityname)
 
     return render_template('index.html')
 
@@ -109,6 +114,7 @@ def check(username,password):
         res = True
     return res 
 
+# TODO : connect this function to the others and project
 def readdata(city_name,API_KEY):
     ''' this is function for collecting datas from api online '''
     base_url = f"http://api.openweathermap.org/data/2.5/weather?q={city_name}&appid={API_KEY}"

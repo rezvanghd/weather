@@ -3,6 +3,7 @@
 # include libraries
 import requests
 import config
+import MySQLdb
 from flask import Flask , render_template,request , redirect,jsonify, flash, url_for, Response, session
 from flask_login import LoginManager, UserMixin, login_required, login_user, logout_user, current_user
 from flask_limiter import Limiter
@@ -85,9 +86,14 @@ def index():
     if request.method == 'POST':
         cityname = request.form["name"]
         # TODO : make this variable jinja for .html template
-        print(cityname)
+        datalist = readdata(cityname, config.API_KEY)
 
-    return render_template('index.html')
+    latestdata = read_from_database()
+    datas = []
+    for data in latestdata:
+        tempmanualc, pressure, croodlon, croodlat, weathermain, weatherdescription, visibility, windspeed, winddeg, cloudsall, syscountry, syssunrise, syssunset, timezone, name = data
+        datas.append({"tempmanualc":tempmanualc,"pressure":pressure,"croodlon":croodlon,"weathermain":weathermain,"weatherdescription":weatherdescription,"visibility":visibility,"windspeed":windspeed,"winddeg":winddeg,"cloudsall":cloudsall,"syscountry":syscountry,"syssunrise":syssunrise,"syssunset":syssunset,"timezone":timezone,"name":name})
+    return render_template('index.html', data = {"latestdata" : latestdata})
 
 @app.route('/photos')
 @login_required
@@ -104,9 +110,6 @@ def contact():
 
     else:
         return render_template('contact.html')
-
-#city_name = input()
-API_KEY = config.API_KEY
 
 def check(username,password):
     res = False
@@ -133,21 +136,6 @@ def readdata(city_name,API_KEY):
 
 
     if (cod == 200):
-        print('lon : ' + str(crood['lon']))
-        print('lat : ' + str(crood['lat']))
-        #print(weather)
-        print('weather main : ' + weather[0]['main'])
-        print('weather description : ' + weather[0]['description'])
-        print('visibility : ' + str(visibility))
-        print('wind speed : ' + str(wind['speed']))
-        print('wind deg : ' + str(wind['deg']))
-        print('numbers of clouds : ' + str(clouds["all"]))
-        print('country : ' + sys['country'])
-        print('sunrise : ' + str(sys['sunrise']))
-        print('sunset : ' + str(sys['sunset']))
-        print('time : ' + str(timezone))
-        print('city : ' + str(name))
-
         tempmanualk = (result.json()['main']['temp'] + result.json()['main']['feels_like'] + result.json()['main'][
             'temp_min'] + result.json()['main']['temp_max']) / 4
         tempmanualc = tempmanualk - 273.15
@@ -155,13 +143,60 @@ def readdata(city_name,API_KEY):
         pressure = result.json()['main']['pressure']
         humidity = result.json()['main']['humidity']
 
-        print("tempmanualc : " +str(tempmanualc))
-        print("pressure : " +str(pressure))
-        print("humidity : " +str(humidity))
-    else:
-        print("error")
+        lista = [tempmanualc,pressure,crood['lon'],crood['lat'],weather[0]['main'],weather[0]['description'],visibility,wind['speed'],wind['deg'],clouds["all"],sys['country'],sys['sunrise'],sys['sunset'],timezone,name]
+        writing_weather_to_database(lista)
+        return lista
 
-#readdata(city_name,API_KEY)
+    else:
+        return "error"
+
+def read_from_database():
+
+    db = connect_to_database()
+    cur = db.cursor()
+    cur.execute("SELECT * FROM works;")
+    db.close()
+    return cur.fetchall()
+
+def connect_to_database():
+    '''this function make connection to mysql service'''
+
+    db = MySQLdb.connect(
+        host=config.host,
+        user=config.user,
+        passwd=config.passwd,
+        db=config.db,
+        charset=config.charset,
+        auth_plugin=config.auth_plugin,
+        port=config.port,
+    )
+
+    return db
+
+def writing_weather_to_database(lista):
+    '''this function write collected weather datas to mysql database'''
+
+    db = connect_to_database()    
+    cur = db.cursor()
+    tempmanualc = lista[0]
+    pressure = lista[1]
+    croodlon = lista[2]
+    croodlat = lista[3]
+    weathermain = lista[4]
+    weatherdescription = lista[5]
+    visibility = lista[6]
+    windspeed = lista[7]
+    winddeg = lista[8]
+    cloudsall = lista[9]
+    syscountry = lista[10]
+    syssunrise = lista[11]
+    syssunset = lista[12]
+    timezone = lista[13]
+    name = lista[14]
+    qury = f'INSERT INTO works VALUES ("{tempmanualc}","{pressure}","{croodlon}","{croodlat}","{weathermain}","{weatherdescription}","{visibility}","{windspeed}","{winddeg}","{cloudsall}","{syscountry}","{syssunrise}","{syssunset}","{timezone}","{name}");'
+    cur.execute(qury)
+    db.commit()
+    db.close()
 
 # main first run part
 if __name__ == '__main__':

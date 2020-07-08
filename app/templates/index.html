@@ -63,13 +63,14 @@
 			<div class="forecast-table">
 				<div class="container">
 					<div class="forecast-container">
+						{% for weather in data.latestdata %}
 						<div class="today forecast">
 							<div class="forecast-header">
 								<div class="day">Monday</div>
 								<div class="date">6 Oct</div>
 							</div> <!-- .forecast-header -->
 							<div class="forecast-content">
-								<div class="location">New York</div>
+								<div class="location">{{weather.name}}</div>
 								<div class="degree">
 									<div class="num">23<sup>o</sup>C</div>
 									<div class="forecast-icon">
@@ -81,6 +82,7 @@
 								<span><img src="static/images/icon-compass.png" alt="">East</span>
 							</div>
 						</div>
+						{% endfor %}
 						<div class="forecast">
 							<div class="forecast-header">
 								<div class="day">Tuesday</div>

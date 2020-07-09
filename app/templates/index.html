@@ -40,6 +40,7 @@
 						<button type="button" class="menu-toggle"><i class="fa fa-bars"></i></button>
 						<ul class="menu">
 							<li class="menu-item current-menu-item"><a href="/">Home</a></li>
+							<li class="menu-item"><a href="history">history</a></li>
 							<li class="menu-item"><a href="photos">Photos</a></li>
 							<li class="menu-item"><a href="contact">Contact</a></li>
 							<li class="menu-item current-menu-item"><a href="/logout">Logout</a></li>
@@ -51,7 +52,7 @@
 				</div>
 			</div> <!-- .site-header -->
 
-			<div class="hero" data-bg-image="static/images/banner.png">
+			<div class="hero" data-bg-image="static/images/acity.jpg">
 				<div class="container">
 					<form class="find-location" action="" method="POST">
 						<input type="text" placeholder="Find your location... " name="name" id="name">
@@ -63,23 +64,22 @@
 			<div class="forecast-table">
 				<div class="container">
 					<div class="forecast-container">
-						{% for weather in data.latestdata %}
+						{% for weather in data.datas %}
 						<div class="today forecast">
 							<div class="forecast-header">
-								<div class="day">Monday</div>
-								<div class="date">6 Oct</div>
+								<div class="day">Weather</div>
+								<div class="date">MG</div>
 							</div> <!-- .forecast-header -->
 							<div class="forecast-content">
 								<div class="location">{{weather.name}}</div>
 								<div class="degree">
-									<div class="num">23<sup>o</sup>C</div>
-									<div class="forecast-icon">
-										<img src="static/images/icons/icon-1.svg" alt="" width=90>
-									</div>	
+									<div class="num">{{weather.tempmanualc}}<sup>o</sup>C</div>
 								</div>
-								<span><img src="static/images/icon-umberella.png" alt="">20%</span>
-								<span><img src="static/images/icon-wind.png" alt="">18km/h</span>
-								<span><img src="static/images/icon-compass.png" alt="">East</span>
+								<div class="location">{{weather.weatherdescription}}</div>
+								<br>
+								<span><img src="static/images/icon-umberella.png" alt="">{{weather.humidity}}%</span>
+								<span><img src="static/images/icon-wind.png" alt="">{{weather.windspeed}} m/s</span>
+								<span><img src="static/images/icon-compass.png" alt="">{{weather.timestamp}}</span>
 							</div>
 						</div>
 						{% endfor %}

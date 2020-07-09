@@ -1,6 +1,7 @@
 #$user/bin/python3
 
 # include libraries
+import datetime
 import requests
 import config
 import MySQLdb
@@ -88,18 +89,26 @@ def index():
         # TODO : make this variable jinja for .html template
         datalist = readdata(cityname, config.API_KEY)
 
-    latestdata = read_from_database()
+    latestdata = reading_latestwritedatas_to_database()
     datas = []
+    # f = temp
     for data in latestdata:
-        tempmanualc, pressure, croodlon, croodlat, weathermain, weatherdescription, visibility, windspeed, winddeg, cloudsall, syscountry, syssunrise, syssunset, timezone, name = data
-        datas.append({"tempmanualc":tempmanualc,"pressure":pressure,"croodlon":croodlon,"weathermain":weathermain,"weatherdescription":weatherdescription,"visibility":visibility,"windspeed":windspeed,"winddeg":winddeg,"cloudsall":cloudsall,"syscountry":syscountry,"syssunrise":syssunrise,"syssunset":syssunset,"timezone":timezone,"name":name})
-    return render_template('index.html', data = {"latestdata" : latestdata})
+        f, pressure, humidity, croodlon, croodlat, weathermain, weatherdescription, visibility, windspeed, winddeg, cloudsall, syscountry, syssunrise, syssunset, timezone, name, timestamp = data
+        datas.append({"tempmanualc":'%.1f' % float(f),"pressure":pressure, "humidity":humidity, "croodlon":croodlon,"weathermain":weathermain,"weatherdescription":weatherdescription,"visibility":visibility,"windspeed":windspeed,"winddeg":winddeg,"cloudsall":cloudsall,"syscountry":syscountry,"syssunrise":syssunrise,"syssunset":syssunset,"timezone":timezone,"name":name,"timestamp":timestamp})
+    
+    return render_template('index.html', data = {"datas" : datas})
 
 @app.route('/photos')
 @login_required
 def photos_page(): 
 
     return render_template('photos.html')
+
+@app.route('/history')
+@login_required
+def history_page(): 
+
+    return render_template('history.html')
 
 @app.route('/contact',methods=["GET", "POST"])
 @login_required
@@ -143,7 +152,7 @@ def readdata(city_name,API_KEY):
         pressure = result.json()['main']['pressure']
         humidity = result.json()['main']['humidity']
 
-        lista = [tempmanualc,pressure,crood['lon'],crood['lat'],weather[0]['main'],weather[0]['description'],visibility,wind['speed'],wind['deg'],clouds["all"],sys['country'],sys['sunrise'],sys['sunset'],timezone,name]
+        lista = [tempmanualc,pressure,humidity,crood['lon'],crood['lat'],weather[0]['main'],weather[0]['description'],visibility,wind['speed'],wind['deg'],clouds["all"],sys['country'],sys['sunrise'],sys['sunset'],timezone,name]
         writing_weather_to_database(lista)
         return lista
 
@@ -155,6 +164,15 @@ def read_from_database():
     db = connect_to_database()
     cur = db.cursor()
     cur.execute("SELECT * FROM works;")
+    db.close()
+    return cur.fetchall()
+
+def reading_latestwritedatas_to_database():
+    '''this function read alllatestwritedatas statuss from mysql database from past to today and return them'''
+
+    db = connect_to_database()
+    cur = db.cursor()
+    cur.execute("SELECT * FROM works ORDER BY timestamp DESC LIMIT 1;")
     db.close()
     return cur.fetchall()
 
@@ -180,20 +198,22 @@ def writing_weather_to_database(lista):
     cur = db.cursor()
     tempmanualc = lista[0]
     pressure = lista[1]
-    croodlon = lista[2]
-    croodlat = lista[3]
-    weathermain = lista[4]
-    weatherdescription = lista[5]
-    visibility = lista[6]
-    windspeed = lista[7]
-    winddeg = lista[8]
-    cloudsall = lista[9]
-    syscountry = lista[10]
-    syssunrise = lista[11]
-    syssunset = lista[12]
-    timezone = lista[13]
-    name = lista[14]
-    qury = f'INSERT INTO works VALUES ("{tempmanualc}","{pressure}","{croodlon}","{croodlat}","{weathermain}","{weatherdescription}","{visibility}","{windspeed}","{winddeg}","{cloudsall}","{syscountry}","{syssunrise}","{syssunset}","{timezone}","{name}");'
+    humidity = lista[2]
+    croodlon = lista[3]
+    croodlat = lista[4]
+    weathermain = lista[5]
+    weatherdescription = lista[6]
+    visibility = lista[7]
+    windspeed = lista[8]
+    winddeg = lista[9]
+    cloudsall = lista[10]
+    syscountry = lista[11]
+    syssunrise = lista[12]
+    syssunset = lista[13]
+    timezone = lista[14]
+    name = lista[15]
+    timestamp = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    qury = f'INSERT INTO works VALUES ("{tempmanualc}","{pressure}","{humidity}","{croodlon}","{croodlat}","{weathermain}","{weatherdescription}","{visibility}","{windspeed}","{winddeg}","{cloudsall}","{syscountry}","{syssunrise}","{syssunset}","{timezone}","{name}","{timestamp}");'
     cur.execute(qury)
     db.commit()
     db.close()

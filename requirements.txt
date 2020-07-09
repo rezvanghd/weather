@@ -15,6 +15,7 @@ limits==1.5.1
 MarkupSafe==1.1.1
 mccabe==0.6.1
 mysql-connector-python==8.0.20
+mysqlclient==2.0.1
 protobuf==3.12.2
 pylint==2.5.3
 requests==2.24.0

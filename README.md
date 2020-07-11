@@ -10,6 +10,7 @@ this is a simple school project
 - [x] make latest read data and index page without timestamp
 - [ ] write complete readme.md file + help and manufacturing
 - [ ] work on history page read data from mysql server and show it  
+- [ ] remove config.py and add config.py.sample as advance project
 - [ ] develop more ... 
 - [ ] done 
 

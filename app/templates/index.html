@@ -55,7 +55,7 @@
 			<div class="hero" data-bg-image="static/images/acity.jpg">
 				<div class="container">
 					<form class="find-location" action="" method="POST">
-						<input type="text" placeholder="Find your location... " name="name" id="name">
+						<input type="text" placeholder="Find your location... " name="name" id="name" value="mashhad">
 						<input type=submit value="Find">
 					</form>
 
@@ -77,84 +77,22 @@
 								</div>
 								<div class="location">{{weather.weatherdescription}}</div>
 								<br>
-								<span><img src="static/images/icon-umberella.png" alt="">{{weather.humidity}}%</span>
-								<span><img src="static/images/icon-wind.png" alt="">{{weather.windspeed}} m/s</span>
-								<span><img src="static/images/icon-compass.png" alt="">{{weather.timestamp}}</span>
+							</div>
+						</div>
+						<div class="forecast">
+							<div class="forecast-header">
+								<div class="day">Datas</div>
+							</div> <!-- .forecast-header -->
+							<div class="forecast-content">
+								<span><img src="static/images/icon-umberella.png" alt=""> {{weather.humidity}}%</span>
+								<br><br>
+								<span><img src="static/images/icon-wind.png" alt=""> {{weather.windspeed}} m/s</span>
+								<br><br>
+								<span><img src="static/images/icon-compass.png" alt=""> {{weather.timestamp}}</span>
+								<br><br>
 							</div>
 						</div>
 						{% endfor %}
-						<div class="forecast">
-							<div class="forecast-header">
-								<div class="day">Tuesday</div>
-							</div> <!-- .forecast-header -->
-							<div class="forecast-content">
-								<div class="forecast-icon">
-									<img src="static/images/icons/icon-3.svg" alt="" width=48>
-								</div>
-								<div class="degree">23<sup>o</sup>C</div>
-								<small>18<sup>o</sup></small>
-							</div>
-						</div>
-						<div class="forecast">
-							<div class="forecast-header">
-								<div class="day">Wednesday</div>
-							</div> <!-- .forecast-header -->
-							<div class="forecast-content">
-								<div class="forecast-icon">
-									<img src="static/images/icons/icon-5.svg" alt="" width=48>
-								</div>
-								<div class="degree">23<sup>o</sup>C</div>
-								<small>18<sup>o</sup></small>
-							</div>
-						</div>
-						<div class="forecast">
-							<div class="forecast-header">
-								<div class="day">Thursday</div>
-							</div> <!-- .forecast-header -->
-							<div class="forecast-content">
-								<div class="forecast-icon">
-									<img src="static/images/icons/icon-7.svg" alt="" width=48>
-								</div>
-								<div class="degree">23<sup>o</sup>C</div>
-								<small>18<sup>o</sup></small>
-							</div>
-						</div>
-						<div class="forecast">
-							<div class="forecast-header">
-								<div class="day">Friday</div>
-							</div> <!-- .forecast-header -->
-							<div class="forecast-content">
-								<div class="forecast-icon">
-									<img src="static/images/icons/icon-12.svg" alt="" width=48>
-								</div>
-								<div class="degree">23<sup>o</sup>C</div>
-								<small>18<sup>o</sup></small>
-							</div>
-						</div>
-						<div class="forecast">
-							<div class="forecast-header">
-								<div class="day">Saturday</div>
-							</div> <!-- .forecast-header -->
-							<div class="forecast-content">
-								<div class="forecast-icon">
-									<img src="static/images/icons/icon-13.svg" alt="" width=48>
-								</div>
-								<div class="degree">23<sup>o</sup>C</div>
-								<small>18<sup>o</sup></small>
-							</div>
-						</div>
-						<div class="forecast">
-							<div class="forecast-header">
-								<div class="day">Sunday</div>
-							</div> <!-- .forecast-header -->
-							<div class="forecast-content">
-								<div class="forecast-icon">
-									<img src="static/images/icons/icon-14.svg" alt="" width=48>
-								</div>
-								<div class="degree">23<sup>o</sup>C</div>
-								<small>18<sup>o</sup></small>
-							</div>
-						</div>
 					</div>
 				</div>
 			</div>
@@ -222,15 +160,15 @@
 							<div class="col-md-4">
 								<h2 class="section-title">Awesome Photos</h2>
 								<div class="photo-grid">
-									<a href="#"><img src="static/images/thumb-1.jpg" alt="#"></a>
-									<a href="#"><img src="static/images/thumb-2.jpg" alt="#"></a>
-									<a href="#"><img src="static/images/thumb-3.jpg" alt="#"></a>
-									<a href="#"><img src="static/images/thumb-4.jpg" alt="#"></a>
-									<a href="#"><img src="static/images/thumb-5.jpg" alt="#"></a>
-									<a href="#"><img src="static/images/thumb-6.jpg" alt="#"></a>
-									<a href="#"><img src="static/images/thumb-7.jpg" alt="#"></a>
-									<a href="#"><img src="static/images/thumb-8.jpg" alt="#"></a>
-									<a href="#"><img src="static/images/thumb-9.jpg" alt="#"></a>
+									<a href="#"><img src="static/images/1@2.jpg" style="width: 110px; height: 110px;" alt="#"></a>
+									<a href="#"><img src="static/images/2@2.jpg" style="width: 110px; height: 110px;" alt="#"></a>
+									<a href="#"><img src="static/images/3@2.jpg" style="width: 110px; height: 110px;" alt="#"></a>
+									<a href="#"><img src="static/images/4@2.jpg" style="width: 110px; height: 110px;" alt="#"></a>
+									<a href="#"><img src="static/images/5@2.jpg" style="width: 110px; height: 110px;" alt="#"></a>
+									<a href="#"><img src="static/images/6@2.jpg" style="width: 110px; height: 110px;" alt="#"></a>
+									<a href="#"><img src="static/images/7@2.jpg" style="width: 110px; height: 110px;" alt="#"></a>
+									<a href="#"><img src="static/images/8@2.jpg" style="width: 110px; height: 110px;" alt="#"></a>
+									<!--<a href="#"><img src="static/images/thumb-9.jpg" alt="#"></a>-->
 								</div>
 							</div>
 						</div>

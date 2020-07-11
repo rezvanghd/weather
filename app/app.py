@@ -86,7 +86,6 @@ def index():
 
     if request.method == 'POST':
         cityname = request.form["name"]
-        # TODO : make this variable jinja for .html template
         datalist = readdata(cityname, config.API_KEY)
 
     latestdata = reading_latestwritedatas_to_database()
@@ -115,10 +114,25 @@ def history_page():
 def contact():
     ''' this is function for routing to the contact  '''
     if request.method == 'POST':
-        return redirect('/')
-
+        name = request.form["name"]
+        email = request.form["email"]
+        cpname = request.form["cpname"]
+        website = request.form["website"]
+        text = request.form["text"]
+        timestamp = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        alltext = f"""sender : {name}\nemail : {email}\ncompany name : {cpname}\nwebsite : {website}\ntext : {text}"""
+        sendsms(alltext)
+        writing_sms_to_database(timestamp,alltext)
+        
+        return render_template('contact.html')
     else:
         return render_template('contact.html')
+
+def sendsms(mess):
+    url = config.url
+    data = {'receptor':config.phone, 'message':mess}
+    respon = requests.post(url,data=data)
+    return respon
 
 def check(username,password):
     res = False
@@ -126,7 +140,6 @@ def check(username,password):
         res = True
     return res 
 
-# TODO : connect this function to the others and project
 def readdata(city_name,API_KEY):
     ''' this is function for collecting datas from api online '''
     base_url = f"http://api.openweathermap.org/data/2.5/weather?q={city_name}&appid={API_KEY}"
@@ -190,6 +203,16 @@ def connect_to_database():
     )
 
     return db
+
+def writing_sms_to_database(timestamp,alltext):
+    '''this function write collected sms datas to mysql database'''
+
+    db = connect_to_database()    
+    cur = db.cursor()    
+    qury = f'INSERT INTO messages VALUES ("{alltext}","{timestamp}");'
+    cur.execute(qury)
+    db.commit()
+    db.close()
 
 def writing_weather_to_database(lista):
     '''this function write collected weather datas to mysql database'''

@@ -35,25 +35,25 @@
           <li class="nav-item  ">
             <a class="nav-link" href="/">
               <i class="material-icons">dashboard</i>
-              <p>Home</p>
+              <p>خانه</p>
             </a>
           </li>
           <li class="nav-item active ">
             <a class="nav-link" href="/history">
               <i class="material-icons">content_paste</i>
-              <p>History</p>
+              <p>تاریخچه</p>
             </a>
           </li>
           <li class="nav-item ">
             <a class="nav-link" href="/photos">
               <i class="material-icons">bubble_chart</i>
-              <p>Photos</p>
+              <p>تصاویر</p>
             </a>
           </li>
           <li class="nav-item ">
             <a class="nav-link" href="/contact">
               <i class="material-icons">person</i>
-              <p>Contacts</p>
+              <p>ارتباط با ما</p>
             </a>
           </li>
         </ul>
@@ -64,7 +64,7 @@
       <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top " id="navigation-example">
         <div class="container-fluid">
           <div class="navbar-wrapper">
-            <a class="navbar-brand" href="javascript:void(0)">History</a>
+            <a class="navbar-brand" href="javascript:void(0)">تاریخچه</a>
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation" data-target="#navigation-example">
             <span class="sr-only">Toggle navigation</span>
@@ -74,7 +74,7 @@
           </button>
           <div class="collapse navbar-collapse justify-content-end">
             <form class="navbar-form">
-              <button type="button" class="btn btn-primary"><a href="/logout">Logout</a></button>
+              <button type="button" class="btn btn-primary"><a href="/logout">خروج</a></button>
           </div>
         </div>
       </nav>
@@ -85,49 +85,48 @@
             <div class="col-md-12">
               <div class="card card-plain">
                 <div class="card-header card-header-primary">
-                  <h4 class="card-title mt-0"> Weather history
-                  </h4>
-                  <p class="card-category"> all datas collected until now ...</p>
+                  <h4 class="card-title mt-0"> تاریخچه هواشناسی </h4>
+                  <p class="card-category"> تمام اطلاعات ثبت شده تا امروز</p>
                 </div>
                 <div class="card-body">
                   <div class="table-responsive">
                     <table class="table table-hover">
                       <thead class="">
                         <th>
-                          temperature
+                          دما
                         </th>
                         <th>
-                          pressure 
+                          فشار 
                         </th>
                         <th>
-                          humidity 
+                          رطوبت 
                         </th>
                         <th>
-                          main
+                          وضعیت
                         </th>
                         <th>
-                          description 
+                          ابر
                         </th>
                         <th>
-                          visibility
+                          شفافیت
                         </th>
                         <th>
-                          windspeed 
+                          سرعت باد 
                         </th>
                         <th>
-                          winddeg 
+                          درجه باد 
                         </th>
                         <th>
-                          clouds
+                          تعداد ابر
                         </th>
                         <th>
-                          syscountry 
+                          کشور 
                         </th>
                         <th>
-                          name
+                          نام شهر
                         </th>
                         <th>
-                          timestamp
+                          تاریخ
                         </th>
                       </thead>
                       {% for weather in data.datas %}
@@ -192,10 +191,10 @@
                     <table class="table table-hover">
                       <thead class="">
                         <th>
-                          sms text / info
+                          متن پیام / اطلاعات
                         </th>
                         <th>
-                          timestamp
+                          تاریخ
                         </th>
                       </thead>
                       {% for sms in data.allsms %}
@@ -244,7 +243,7 @@
             <div class="clearfix"></div>
           </a>
         </li>
-        <li class="header-title">Images</li>
+        <li class="header-title">تصاویر</li>
         <li>
           <a class="img-holder switch-trigger" href="javascript:void(0)">
             <img src="static/assets/img/sidebar-1.jpg" alt="">

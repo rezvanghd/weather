@@ -107,7 +107,20 @@ def photos_page():
 @login_required
 def history_page(): 
 
-    return render_template('history.html')
+    latestdata = read_from_database()
+    datas = []
+    # f = temp
+    for data in latestdata:
+        f, pressure, humidity, croodlon, croodlat, weathermain, weatherdescription, visibility, windspeed, winddeg, cloudsall, syscountry, syssunrise, syssunset, timezone, name, timestamp = data
+        datas.append({"tempmanualc":'%.1f' % float(f),"pressure":pressure, "humidity":humidity, "croodlon":croodlon,"weathermain":weathermain,"weatherdescription":weatherdescription,"visibility":visibility,"windspeed":windspeed,"winddeg":winddeg,"cloudsall":cloudsall,"syscountry":syscountry,"syssunrise":syssunrise,"syssunset":syssunset,"timezone":timezone,"name":name,"timestamp":timestamp})
+
+    allsms = []
+    latestdata_sms = read_sms_from_database()
+    for smss in latestdata_sms:
+        smstext, timestamp = smss
+        allsms.append({"smstext":smstext,"timestamp":timestamp})
+
+    return render_template('history.html', data = {"datas" : datas,"allsms":allsms})
 
 @app.route('/contact',methods=["GET", "POST"])
 @login_required
@@ -177,6 +190,14 @@ def read_from_database():
     db = connect_to_database()
     cur = db.cursor()
     cur.execute("SELECT * FROM works;")
+    db.close()
+    return cur.fetchall()
+
+def read_sms_from_database():
+
+    db = connect_to_database()
+    cur = db.cursor()
+    cur.execute("SELECT * FROM messages;")
     db.close()
     return cur.fetchall()
 

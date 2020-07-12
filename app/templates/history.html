@@ -94,104 +94,84 @@
                     <table class="table table-hover">
                       <thead class="">
                         <th>
-                          Name
+                          temperature
                         </th>
                         <th>
-                          Country
+                          pressure 
                         </th>
                         <th>
-                          City
+                          humidity 
                         </th>
                         <th>
-                          Salary
+                          main
+                        </th>
+                        <th>
+                          description 
+                        </th>
+                        <th>
+                          visibility
+                        </th>
+                        <th>
+                          windspeed 
+                        </th>
+                        <th>
+                          winddeg 
+                        </th>
+                        <th>
+                          clouds
+                        </th>
+                        <th>
+                          syscountry 
+                        </th>
+                        <th>
+                          name
+                        </th>
+                        <th>
+                          timestamp
                         </th>
                       </thead>
+                      {% for weather in data.datas %}
                       <tbody>
                         <tr>
                           <td>
-                            Dakota Rice
+                            {{weather.tempmanualc}} 'c
                           </td>
                           <td>
-                            Niger
+                            {{weather.pressure}} pa
                           </td>
                           <td>
-                            Oud-Turnhout
+                            {{weather.humidity}} %
                           </td>
                           <td>
-                            $36,738
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            Minerva Hooper
+                            {{weather.weathermain}}
                           </td>
                           <td>
-                            Curaçao
+                            {{weather.weatherdescription}}
                           </td>
                           <td>
-                            Sinaai-Waas
+                            {{weather.visibility}}
                           </td>
                           <td>
-                            $23,789
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            Sage Rodriguez
+                            {{weather. windspeed}} m/s
                           </td>
                           <td>
-                            Netherlands
+                            {{weather.winddeg}} '
                           </td>
                           <td>
-                            Baileux
+                            {{weather.cloudsall}}
+                          </td>                          
+                          <td>
+                            {{weather.syscountry}}
+                          </td>                          
+                          <td>
+                            {{weather.name}} city
                           </td>
                           <td>
-                            $56,142
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            Philip Chaney
-                          </td>
-                          <td>
-                            Korea, South
-                          </td>
-                          <td>
-                            Overland Park
-                          </td>
-                          <td>
-                            $38,735
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            Doris Greene
-                          </td>
-                          <td>
-                            Malawi
-                          </td>
-                          <td>
-                            Feldkirchen in Kärnten
-                          </td>
-                          <td>
-                            $63,542
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            Mason Porter
-                          </td>
-                          <td>
-                            Chile
-                          </td>
-                          <td>
-                            Gloucester
-                          </td>
-                          <td>
-                            $78,615
+                            {{weather.timestamp}}
                           </td>
                         </tr>
                       </tbody>
+                      {% endfor %}
                     </table>
                   </div>
                 </div>
@@ -212,104 +192,24 @@
                     <table class="table table-hover">
                       <thead class="">
                         <th>
-                          Name
+                          sms text / info
                         </th>
                         <th>
-                          Country
-                        </th>
-                        <th>
-                          City
-                        </th>
-                        <th>
-                          Salary
+                          timestamp
                         </th>
                       </thead>
+                      {% for sms in data.allsms %}
                       <tbody>
                         <tr>
                           <td>
-                            Dakota Rice
+                            {{sms.smstext}}
                           </td>
                           <td>
-                            Niger
-                          </td>
-                          <td>
-                            Oud-Turnhout
-                          </td>
-                          <td>
-                            $36,738
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            Minerva Hooper
-                          </td>
-                          <td>
-                            Curaçao
-                          </td>
-                          <td>
-                            Sinaai-Waas
-                          </td>
-                          <td>
-                            $23,789
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            Sage Rodriguez
-                          </td>
-                          <td>
-                            Netherlands
-                          </td>
-                          <td>
-                            Baileux
-                          </td>
-                          <td>
-                            $56,142
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            Philip Chaney
-                          </td>
-                          <td>
-                            Korea, South
-                          </td>
-                          <td>
-                            Overland Park
-                          </td>
-                          <td>
-                            $38,735
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            Doris Greene
-                          </td>
-                          <td>
-                            Malawi
-                          </td>
-                          <td>
-                            Feldkirchen in Kärnten
-                          </td>
-                          <td>
-                            $63,542
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            Mason Porter
-                          </td>
-                          <td>
-                            Chile
-                          </td>
-                          <td>
-                            Gloucester
-                          </td>
-                          <td>
-                            $78,615
+                            {{sms.timestamp}}
                           </td>
                         </tr>
                       </tbody>
+                      {% endfor %}
                     </table>
                   </div>
                 </div>

@@ -8,10 +8,9 @@ this is a simple school project
 - [x] make this variable jinja for .html template :: cityname
 - [x] twins readdata solve for once
 - [x] make latest read data and index page without timestamp
+- [x] work on history page read data from mysql server and show it  
+- [x] develop more ... 
 - [ ] write complete readme.md file + help and manufacturing
-- [ ] work on history page read data from mysql server and show it  
-- [ ] remove config.py and add config.py.sample as advance project
-- [ ] develop more ... 
 - [ ] done 
 
 mysql create tabel : 

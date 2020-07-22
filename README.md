@@ -12,6 +12,7 @@ This advance project is done for school teaching classes as a project series.
 - [x] work on history page read data from mysql server and show it  
 - [x] develop more ... 
 - [x] write complete readme.md file + help and manufacturing
+- [ ] add download xlsx file to history page continue coding
 - [x] done 
 
 ## How to run

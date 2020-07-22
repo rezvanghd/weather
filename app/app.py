@@ -104,9 +104,13 @@ def photos_page():
 
     return render_template('photos.html')
 
-@app.route('/history')
+@app.route('/history',methods=["GET", "POST"])
 @login_required
 def history_page(): 
+
+    if request.method == 'POST':
+        smsxlsx = request.form["smsxlsx"]
+        print(smsxlsx)
 
     latestdata = read_from_database()
     datas = []

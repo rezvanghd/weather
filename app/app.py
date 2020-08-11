@@ -5,8 +5,7 @@ import datetime
 import requests
 import config
 import MySQLdb
-import xlsxwriter
-from flask import Flask , render_template,request , redirect,jsonify, flash, url_for, Response, session
+from flask import Flask , render_template,request , redirect,jsonify, flash, url_for, Response, session, abort, send_file
 from flask_login import LoginManager, UserMixin, login_required, login_user, logout_user, current_user
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
@@ -81,6 +80,13 @@ def sys_check():
     ret = {'status':'ok','message':'[+] flask server is running'}
     return jsonify(ret) , 200
 
+UPLOAD_DIRECTORY = ""
+
+@app.route("/files/<path:path>")
+def get_file(path):
+    """Download a file."""
+    return send_file(path)
+
 @app.route('/',methods=["GET", "POST"])
 @login_required
 def index(): 
@@ -107,7 +113,10 @@ def photos_page():
 @app.route('/history',methods=["GET", "POST"])
 @login_required
 def history_page(): 
-
+    
+    fo = open("app/weatherhistory.csv", "w")
+    fo.write("temp, pressure ,humidity ,  croodlon,croodlat,weathermain, weatherdescription, visibility, windspeed, winddeg, cloudsall, syscountry, syssunrise, syssunset, timezone, name, timestamp")
+    fo.write("\n")
     if request.method == 'POST':
         smsxlsx = request.form["smsxlsx"]
         print(smsxlsx)
@@ -118,13 +127,23 @@ def history_page():
     for data in latestdata:
         f, pressure, humidity, croodlon, croodlat, weathermain, weatherdescription, visibility, windspeed, winddeg, cloudsall, syscountry, syssunrise, syssunset, timezone, name, timestamp = data
         datas.append({"tempmanualc":'%.1f' % float(f),"pressure":pressure, "humidity":humidity, "croodlon":croodlon,"weathermain":weathermain,"weatherdescription":weatherdescription,"visibility":visibility,"windspeed":windspeed,"winddeg":winddeg,"cloudsall":cloudsall,"syscountry":syscountry,"syssunrise":syssunrise,"syssunset":syssunset,"timezone":timezone,"name":name,"timestamp":timestamp})
+        fo.write(f"{f}, {pressure} ,{humidity} ,  {croodlon},{croodlat},{weathermain}, {weatherdescription},{ visibility}, {windspeed}, {winddeg}, {cloudsall},{syscountry}, {syssunrise}, {syssunset}, {timezone}, {name}, {timestamp}")
+        fo.write("\n")
+    
+    fo.close()
 
+    fo = open("app/sms.csv", "w")
+    fo.write("smsinfo , timestamp ")
+    fo.write("\n")
     allsms = []
     latestdata_sms = read_sms_from_database()
     for smss in latestdata_sms:
         smstext, timestamp = smss
         allsms.append({"smstext":smstext,"timestamp":timestamp})
+        fo.write(f"{smstext},{timestamp}")
+        fo.write("\n")
 
+    fo.close()
     return render_template('history.html', data = {"datas" : datas,"allsms":allsms})
 
 @app.route('/contact',methods=["GET", "POST"])

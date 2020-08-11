@@ -12,7 +12,7 @@ This advance project is done for school teaching classes as a project series.
 - [x] work on history page read data from mysql server and show it  
 - [x] develop more ... 
 - [x] write complete readme.md file + help and manufacturing
-- [ ] add download xlsx file to history page continue coding
+- [ ] add download xlsx file to history page continue cغoding
 - [x] done 
 
 ## How to run
@@ -44,3 +44,5 @@ This advance project is done for school teaching classes as a project series.
 13. Now environment is ready. Run it by `python app/main.py`
 
 #### DONE
+
+    return send_from_directory(UPLOAD_DIRECTORY, path, as_attachment=True)

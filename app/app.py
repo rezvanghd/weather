@@ -110,6 +110,12 @@ def photos_page():
 
     return render_template('photos.html')
 
+@app.route('/movies')
+@login_required
+def movies_page(): 
+
+    return render_template('movies.html')
+
 @app.route('/history',methods=["GET", "POST"])
 @login_required
 def history_page(): 

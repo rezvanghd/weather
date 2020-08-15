@@ -114,7 +114,7 @@ def photos_page():
 @login_required
 def history_page(): 
     
-    fo = open("app/weatherhistory.csv", "w")
+    fo = open("app/weatherhistory.csv", "+w")
     fo.write("temp, pressure ,humidity ,  croodlon,croodlat,weathermain, weatherdescription, visibility, windspeed, winddeg, cloudsall, syscountry, syssunrise, syssunset, timezone, name, timestamp")
     fo.write("\n")
     if request.method == 'POST':
